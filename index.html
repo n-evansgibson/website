@@ -97,7 +97,7 @@
     .nav-links a:hover { color: var(--text); border-color: var(--accent); background: var(--surface); }
 
     /* ============================================================
-       CONTROLS ROW — DIFFICULTY / COLOR / SORCERER
+       CONTROLS ROW — LATENCY / COLOR / FAIRY MODE
        (visual toggles only — NOT wired to anything yet)
        ============================================================ */
     .controls {
@@ -109,7 +109,7 @@
       font-family: var(--font-mono); font-size: 0.7rem;
       letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
     }
-    .warn { color: var(--accent); font-size: 0.8rem; }     /* ⚠ flavor under difficulty */
+    .warn { color: var(--accent); font-size: 0.8rem; }     /* ⚠ flavor under latency */
 
     .seg { display: inline-flex; border: 2px solid var(--line); }
     .seg input { position: absolute; opacity: 0; width: 0; height: 0; }
@@ -131,7 +131,7 @@
       cursor: var(--wand-url) 0 2, auto;
     }
 
-    /* DIFFICULTY: a lagging cursor + damped scroll, driven by the script below.
+    /* LATENCY: a lagging cursor
        .cursor-lagging hides the native cursor; #lag-cursor is the visible one. */
     #lag-cursor {
       position: fixed; top: 0; left: 0;
@@ -324,11 +324,11 @@
   <div class="wrap" id="top">
     <div class="controls">
       <div class="ctrl">
-        <span class="ctrl-label">Difficulty</span>
+        <span class="ctrl-label">Latency</span>
         <div class="seg">
-          <input type="radio" name="difficulty" id="diff-easy" checked><label for="diff-easy">Easy</label>
-          <input type="radio" name="difficulty" id="diff-med"><label for="diff-med">Med</label>
-          <input type="radio" name="difficulty" id="diff-hard"><label for="diff-hard">Hard</label>
+          <input type="radio" name="latency" id="diff-easy" checked><label for="diff-easy">Easy</label>
+          <input type="radio" name="latency" id="diff-med"><label for="diff-med">Med</label>
+          <input type="radio" name="latency" id="diff-hard"><label for="diff-hard">Hard</label>
         </div>
         <span class="warn" title="placeholder">&#9888;</span>
       </div>
@@ -342,10 +342,10 @@
       </div>
 
       <div class="ctrl">
-        <span class="ctrl-label">Sorcerer</span>
+        <span class="ctrl-label">Fairy Mode</span>
         <div class="seg">
-          <input type="radio" name="sorcerer" id="sorc-off" checked><label for="sorc-off">Off</label>
-          <input type="radio" name="sorcerer" id="sorc-on"><label for="sorc-on">On</label>
+          <input type="radio" name="fairy mode" id="sorc-off" checked><label for="sorc-off">Off</label>
+          <input type="radio" name="fairy mode" id="sorc-on"><label for="sorc-on">On</label>
         </div>
       </div>
     </div>
@@ -362,16 +362,18 @@
 
           <div class="about-pages">
             <div class="apage a1">
-              <p>Replace this with a few sentences about your background, your focus areas, and what drives your work. Keep it human — this is the part people read first. Mention <strong>what you specialize in</strong> and the kinds of problems you like to solve.</p>
+              <p> <strong> Hey lol</strong></p>
               <div class="tags">
-                <span class="tag">Signal Processing</span>
-                <span class="tag">Embedded Systems</span>
-                <span class="tag">Control Systems</span>
+                <span class="tag">C/C++</span>
+                <span class="tag">Python</span>
+                <span class="tag">Circuits</span>
+                <span class="tag">Cadence Virtuoso</span>
+                <span class="tag">SystemVerilog</span>
               </div>
             </div>
             <div class="apage a2">
-              <p>Page two — use this for whatever overflows the first page: a longer story, interests outside engineering, what you're currently learning, or how to get in touch.</p>
-              <p>Flip back with the arrow whenever you like.</p>
+              <p> Filler space</p>
+
             </div>
           </div>
 
@@ -391,9 +393,9 @@
       <h2>Work Experience</h2>
       <div class="roles">
         <div class="role">
-          <h3>Job #1 — Title</h3>
-          <div class="org">Company Name</div>
-          <div class="when">Jun 2025 — Present</div>
+          <h3>Electronic Systems Verification Engineering Intern</h3>
+          <div class="org">Caterpillar Inc.</div>
+          <div class="when">May 2025 — Present</div>
           <p>A short description of your responsibilities and a result or two.</p>
           <details class="more">
             <summary>more detail</summary>
@@ -401,20 +403,20 @@
           </details>
         </div>
         <div class="role">
-          <h3>Job #2 — Title</h3>
-          <div class="org">Earlier Company</div>
-          <div class="when">2023 — 2025</div>
-          <p>A short description of your responsibilities and a result or two.</p>
+          <h3>18-220 Teaching Assistant</h3>
+          <div class="org">Carnegie Mellon Electrical and Computer Engineering</div>
+          <div class="when">January 2026 — Present</div>
+          <p>Electronic Devices and Analog Circuits</p>
           <details class="more">
             <summary>more detail</summary>
             <p class="detail">Expanded detail for this role goes here.</p>
           </details>
         </div>
         <div class="role">
-          <h3>Job #3 — Title</h3>
-          <div class="org">First Company</div>
-          <div class="when">2022 — 2023</div>
-          <p>A short description of your responsibilities and a result or two.</p>
+          <h3>18-100 Teaching Assistant</h3>
+          <div class="org">Carnegie Mellon Electrical and Computer Engineering</div>
+          <div class="when">August 2025 — December 2026</div>
+          <p>Introduction to Electrical and Computer Engineering</p>
           <details class="more">
             <summary>more detail</summary>
             <p class="detail">Expanded detail for this role goes here.</p>
