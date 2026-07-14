@@ -96,13 +96,9 @@
     .nav-links a:hover { color: var(--text); border-color: var(--accent); background: var(--surface); }
 
     /* ============================================================
-       CONTROLS ROW — WAND
+       CONTROLS — WAND
        ============================================================ */
-    .controls {
-      display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2.25rem;
-      padding: 0.85rem 0; border-bottom: 2px solid var(--line);
-    }
-    .ctrl { display: flex; align-items: center; gap: 0.55rem; }
+    .ctrl { display: inline-flex; align-items: center; gap: 0.55rem; vertical-align: middle; }
     .ctrl-label {
       font-family: var(--font-mono); font-size: 0.7rem;
       letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
@@ -241,9 +237,10 @@
     footer {
       border-top: 2px solid var(--line); padding: 2.25rem 0;
       font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted);
-      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
     }
     footer a:hover { color: var(--accent); }
+    footer .ctrl { gap: 0.4rem; }
 
     /* ============================================================
        RESPONSIVE
@@ -252,14 +249,13 @@
       nav { height: auto; padding: 0.6rem 0; }
       .nav-links a { font-size: 0.7rem; padding: 0.25rem 0.4rem; }
       .grid.two { grid-template-columns: 1fr; }
-      .controls { gap: 0.75rem 1.5rem; }
     }
   </style>
 </head>
 
 <body>
   <!-- ===================== TOP BAR ===================== -->
-  <header>
+  <header id="top">
     <div class="wrap">
       <nav>
         <a href="#top" class="name">Natalia Evans-Gibson</a>
@@ -275,18 +271,6 @@
     </div>
   </header>
 
-  <!-- ===================== CONTROLS ===================== -->
-  <div class="wrap" id="top">
-    <div class="controls">
-      <div class="ctrl">
-        <span class="ctrl-label">Wand</span>
-        <div class="seg">
-          <input type="radio" name="fairy mode" id="sorc-off" checked><label for="sorc-off">Off</label>
-          <input type="radio" name="fairy mode" id="sorc-on"><label for="sorc-on">On</label>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- ===================== ABOUT ===================== -->
   <div class="wrap">
@@ -367,11 +351,11 @@
   <!-- ===================== RESEARCH ===================== -->
   <div class="wrap">
     <section id="research">
-      <h2>Research</h2>
+      <h2>Research Experience</h2>
       <div class="grid one">
         <div class="card">
           <h3>ASIC I/O Harness Project</h3>
-          <div class="meta">CMU ECE Department / Jim Bain, Ken Mai · 2026</div>
+          <div class="meta">CMU ECE Department / Jim Bain, Ken Mai · Incoming Fall 2026</div>
           <p>A sentence or two on the research question, your role, and the outcome.</p>
           <details class="more">
             <summary>more detail</summary>
@@ -380,7 +364,7 @@
         </div>
         <div class="card">
           <h3> Grasp Optimization with sEMG in XR</h3>
-          <div class="meta">Neuromechatronics Lab / Doug Weber, Dailyn Despradel · 2025</div>
+          <div class="meta">Neuromechatronics Lab / Doug Weber, Dailyn Despradel · Feb 2025 - Mar 2026</div>
           <p>A sentence or two on the research question, your role, and the outcome.</p>
           <details class="more">
             <summary>more detail</summary>
@@ -453,11 +437,18 @@
   <div class="wrap">
     <footer>
       <span>© 2026 Natalia Evans-Gibson</span>
-      <span>
+      <div>
         <a href="nevansgi@andrew.cmu.edu">Email</a> ·
         <a href="https://github.com/n-evansgibson">GitHub</a> ·
-        <a href="https://www.linkedin.com/in/nevansgibson/">LinkedIn</a>
-      </span>
+        <a href="https://www.linkedin.com/in/nevansgibson/">LinkedIn</a> ·
+        <span class="ctrl">
+          <span class="ctrl-label">Wand</span>
+          <span class="seg">
+            <input type="radio" name="fairy mode" id="sorc-off" checked><label for="sorc-off">Off</label>
+            <input type="radio" name="fairy mode" id="sorc-on"><label for="sorc-on">On</label>
+          </span>
+        </span>
+      </div>
     </footer>
   </div>
 </body>
