@@ -25,8 +25,7 @@
       --text:      #d9dde5;
       --muted:     #828c9c;
       --purple:    #b07cff;   /* PRIMARY accent  */
-      --cyan:      #22d3ee;   /* SECONDARY accent */
-      --accent:    var(--purple);  /* active accent — the Color toggle swaps this */
+      --accent:    var(--purple);
       --wand-url:  url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAD+ElEQVR4nM2X3W5bRRDHfxt/HNukxLXTBKJ8wClCLb1AfJSPR+D+pPf0GRAiT+A+RR/APnc8BGrFJb1BdCuEKqGSqFQ0dRzFHi52xl4fH0sxFxEjrfbs1+x/Z/47swf+R+K0XKms9Xte+j0vQBWoAZUrBWAf/Z4/BzaApoJwXIFVnG4uPxx9vzDoyZvABBhrLWXrS/pXAwC0U7KXT2UAwE13WATSBoYKZJySifbXdYqB/M/STMnExL6/7f4i/Z4X3fAGsA5UtN3UusPMbStLVetzmD/5TXfIUxlwf/OJde0AJ8xO2vLkeyJy4pzrRnpWsoSRcLrI3GAgHh7fseYW0CacFqAOVJ1zH/V7/kT765HOlQDgyR3A/c0nCyA8+aFukOgmEEw+AS7uHaVdwhVOtL60VIsd33zXmoIwl6Rkg4WVYe0EGBEIaoRe4EJKJp487p/YR/GON1OyN9bw5FlKlkftr4G/gNfAdd18lJI99+TXCNdxooCKkkTfo2UAKgRW7xB8nqRkP8I8NwCccx8rkNfAC2bcYAmA0vEiYcbAKYHtL4BjmJ6cwYNnDB48s7k1PYAR2Kn1qqq3qHsSlek5yhg7Al4BfwLPte9VybxrQAOoiIgFprcIVqyxSMYLKxo/1oDKnAsswhXFk38gIr9Z28jpyb8UkUd6UzZ0OCG4BdTUSsKY8GOdtwjAk7d0MGFmro6i7+i8xxG4WwRXNZi542+tjWzCIgmbQG0h0ymIPZ1gka2pp2kZoJTsJ2DuuhbFkzeY+T1hlrSGZoGydW316YfAHrCtpQ10ga6O35ZIgLvAbeA9Qt7YVJe29QAWyMwSFUriEDrxhj5S3lUFLZRYlqyAHUtaKZn1fQHcAQ6AXWBXwXUIiawWE3AZgIpu2AXeIQScBvMPlIYBAL4yANr+TK2wDWwC23qYruqtRJZolV3DMYEkbwgcEN1UohKvG3ryT62Rkv2s1rpQHaf3jtJuSmZErev4GlBdlrnGuvlQwUxUuW0uwJkBAE4tWAGIyK+EOFFVPWeePE5YTnVeLNl/KhUtMdCEwJN1BXSg5RawXyDmvgKpE8zfIXBqXfUutUBsCXsPmqxFJ4jnDIGXzrkDCGG73/O/EziU6GnPCMnrn1jZqmLvv7EndynZHxGQUQwCQESmIFKyU+BC35JWVhZLNBZELC7sEsxcJ5h9mTtaBDJeJ/wGrCxOfW/cWAe6etXsgVrT/gMpEd1869IAIvbHadbuskW5LrOImeiaDeD9JSD2ga1V/nrKkgkEQo4IprcfGXumtYCmiBwXlTnnPgHOVyFh0QITfYDYLViIGxHYMnmbYK1LS8J8MikCgkLcUDckQKvEBXeBz/8FNfLPtf+BYV4AAAAASUVORK5CYII=');
       --shadow:    rgba(0,0,0,0.6);
 
@@ -97,8 +96,7 @@
     .nav-links a:hover { color: var(--text); border-color: var(--accent); background: var(--surface); }
 
     /* ============================================================
-       CONTROLS ROW — LATENCY / COLOR / FAIRY MODE
-       (visual toggles only — NOT wired to anything yet)
+       CONTROLS ROW — FAIRY MODE
        ============================================================ */
     .controls {
       display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2.25rem;
@@ -109,7 +107,6 @@
       font-family: var(--font-mono); font-size: 0.7rem;
       letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
     }
-    .warn { color: var(--accent); font-size: 0.8rem; }     /* ⚠ flavor under latency */
 
     .seg { display: inline-flex; border: 2px solid var(--line); }
     .seg input { position: absolute; opacity: 0; width: 0; height: 0; }
@@ -121,29 +118,11 @@
     .seg label:last-of-type { border-right: none; }
     .seg input:checked + label { background: var(--accent); color: #0a0b0e; }
 
-    /* COLOR mode: Blue switches the single accent to cyan; Purple is the default in :root */
-    body:has(#col-blue:checked) { --accent: var(--cyan); }
-
     /* SORCERER mode ON -> wand cursor everywhere (pure CSS via :has()).
        Hotspot 0 2 matches the original .cur file. */
     body:has(#sorc-on:checked),
     body:has(#sorc-on:checked) * {
       cursor: var(--wand-url) 0 2, auto;
-    }
-
-    /* LATENCY: a lagging cursor
-       .cursor-lagging hides the native cursor; #lag-cursor is the visible one. */
-    #lag-cursor {
-      position: fixed; top: 0; left: 0;
-      width: 24px; height: 24px; margin: -3px 0 0 -3px;   /* hotspot at the arrow tip */
-      background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMyAzIEwzIDE4IEw3IDE0LjMgTDkuOCAyMC41IEwxMi4yIDE5LjQgTDkuNCAxMy4zIEwxNC44IDEzLjMgWiIgZmlsbD0iI2YyZjRmOCIgc3Ryb2tlPSIjMTUxNjFiIiBzdHJva2Utd2lkdGg9IjEuNCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPgo=') center / 24px no-repeat;
-      pointer-events: none; z-index: 9999; opacity: 0; will-change: transform;
-    }
-    body.cursor-lagging, body.cursor-lagging * { cursor: none !important; }
-    /* In Sorcerer mode the lagging cursor becomes the wand */
-    body:has(#sorc-on:checked) #lag-cursor {
-      width: 32px; height: 32px; margin: -2px 0 0 0;
-      border: none; background: var(--wand-url) center / 32px no-repeat;
     }
 
     /* ============================================================
@@ -231,6 +210,7 @@
        ============================================================ */
     .grid { display: grid; gap: 1.25rem; }
     .grid.two { grid-template-columns: repeat(2, 1fr); }
+    .grid.one { grid-template-columns: 1fr; }
     .card {
       background: var(--surface); border: 2px solid var(--line);
       padding: 1.4rem 1.5rem; box-shadow: 5px 5px 0 var(--shadow);
@@ -256,31 +236,6 @@
     }
 
     /* ============================================================
-       NOTES — featured note on top, then list (kept formatting)
-       ============================================================ */
-    .featured {
-      border: 2px solid var(--accent); background: var(--surface);
-      padding: 1.3rem 1.45rem; box-shadow: 5px 5px 0 var(--shadow);
-      margin-bottom: 1.75rem;
-    }
-    .featured .ftag {
-      font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.16em;
-      text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 0.55rem;
-    }
-    .featured .date { font-family: var(--font-mono); font-size: 0.74rem; color: var(--accent); }
-    .featured h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; margin: 0.15rem 0 0.5rem; }
-    .featured p { color: var(--muted); font-size: 0.95rem; max-width: 64ch; }
-
-    .entry {
-      display: flex; gap: 1.5rem; align-items: baseline;
-      padding: 1rem 0.75rem; border: 2px solid transparent; border-bottom: 2px solid var(--line);
-    }
-    .entry:hover { border-color: var(--accent); background: var(--surface); }
-    .entry .date { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); white-space: nowrap; min-width: 6rem; }
-    .entry .title { font-weight: 500; }
-    .entry .title .ex { display: block; color: var(--muted); font-size: 0.88rem; }
-
-    /* ============================================================
        FOOTER
        ============================================================ */
     footer {
@@ -297,7 +252,6 @@
       nav { height: auto; padding: 0.6rem 0; }
       .nav-links a { font-size: 0.7rem; padding: 0.25rem 0.4rem; }
       .grid.two { grid-template-columns: 1fr; }
-      .entry { flex-direction: column; gap: 0.25rem; }
       .controls { gap: 0.75rem 1.5rem; }
     }
   </style>
@@ -314,35 +268,17 @@
           <a href="#work">Work</a>
           <a href="#projects">Projects</a>
           <a href="#athletics">Athletics</a>
-          <a href="#notes">Notes</a>
+          <a href="#research">Research</a>
         </div>
       </nav>
     </div>
   </header>
 
-  <!-- ===================== CONTROLS (toggles, no functionality yet) ===================== -->
+  <!-- ===================== CONTROLS ===================== -->
   <div class="wrap" id="top">
     <div class="controls">
       <div class="ctrl">
-        <span class="ctrl-label">Latency</span>
-        <div class="seg">
-          <input type="radio" name="latency" id="diff-easy" checked><label for="diff-easy">Easy</label>
-          <input type="radio" name="latency" id="diff-med"><label for="diff-med">Med</label>
-          <input type="radio" name="latency" id="diff-hard"><label for="diff-hard">Hard</label>
-        </div>
-        <span class="warn" title="placeholder">&#9888;</span>
-      </div>
-
-      <div class="ctrl">
-        <span class="ctrl-label">Color</span>
-        <div class="seg">
-          <input type="radio" name="color" id="col-blue"><label for="col-blue">Blue</label>
-          <input type="radio" name="color" id="col-purple" checked><label for="col-purple">Purple</label>
-        </div>
-      </div>
-
-      <div class="ctrl">
-        <span class="ctrl-label">Fairy Mode</span>
+        <span class="ctrl-label">Wand</span>
         <div class="seg">
           <input type="radio" name="fairy mode" id="sorc-off" checked><label for="sorc-off">Off</label>
           <input type="radio" name="fairy mode" id="sorc-on"><label for="sorc-on">On</label>
@@ -474,46 +410,36 @@
   <!-- ===================== ATHLETICS (placeholder) ===================== -->
   <div class="wrap">
     <section id="athletics">
-      <h2>Athletics</h2>
+      <h2>NCAA Athletics</h2>
       <div class="athletics-box">
         [ Athletics — placeholder box, to be built out later ]
       </div>
     </section>
   </div>
 
-  <!-- ===================== NOTES ===================== -->
+  <!-- ===================== RESEARCH ===================== -->
   <div class="wrap">
-    <section id="notes">
-      <h2>Notes</h2>
-
-      <!-- Featured note: shown in full on the page, above the list -->
-      <div class="featured">
-        <span class="ftag">★ Featured</span>
-        <span class="date">2026 · 05</span>
-        <h3>Featured note title</h3>
-        <p>This note is pinned to the top and shown in full on the page. Use it for whatever you most want visitors to read first — a current project, an essay you're proud of, an announcement.</p>
-      </div>
-
-      <!-- Regular notes list (same formatting as before) -->
-      <div class="notes-list">
-        <a class="entry" href="#">
-          <span class="date">2026 · 04</span>
-          <span class="title">First entry title
-            <span class="ex">A one-line teaser of what this post is about.</span>
-          </span>
-        </a>
-        <a class="entry" href="#">
-          <span class="date">2026 · 03</span>
-          <span class="title">Another thing I learned
-            <span class="ex">Short summary line goes here.</span>
-          </span>
-        </a>
-        <a class="entry" href="#">
-          <span class="date">2026 · 02</span>
-          <span class="title">A project retrospective
-            <span class="ex">What worked, what I'd do differently.</span>
-          </span>
-        </a>
+    <section id="research">
+      <h2>Research</h2>
+      <div class="grid one">
+        <div class="card">
+          <h3>Research Project One</h3>
+          <div class="meta">Lab / Advisor · 2026</div>
+          <p>A sentence or two on the research question, your role, and the outcome.</p>
+          <details class="more">
+            <summary>more detail</summary>
+            <p class="detail">Expand to add the full write-up: motivation, methods, results, publications or links.</p>
+          </details>
+        </div>
+        <div class="card">
+          <h3>Research Project Two</h3>
+          <div class="meta">Lab / Advisor · 2025</div>
+          <p>A sentence or two on the research question, your role, and the outcome.</p>
+          <details class="more">
+            <summary>more detail</summary>
+            <p class="detail">Expand to add the full write-up: motivation, methods, results, publications or links.</p>
+          </details>
+        </div>
       </div>
     </section>
   </div>
@@ -529,75 +455,5 @@
       </span>
     </footer>
   </div>
-  <script>
-  (function () {
-    var body = document.body;
-    var get = function (id) { return document.getElementById(id); };
-
-    // DISCRETE cursor lag only. The cursor sits still, then JUMPS toward you every
-    // `interval` ms, closing `step` of the remaining gap. Clicks act at the lagged
-    // (shown) position, not your real pointer.
-    var LEVELS = {
-      easy:   null,
-      medium: { interval: 75,  step: 0.55 },
-      hard:   { interval: 260, step: 0.45 }
-    };
-    var lvl = 'easy';
-    function readLevel() {
-      if (get('diff-hard').checked) return 'hard';
-      if (get('diff-med').checked)  return 'medium';
-      return 'easy';
-    }
-
-    // ----- lagging cursor element -----
-    var dot = document.createElement('div');
-    dot.id = 'lag-cursor';
-    body.appendChild(dot);
-
-    var mx = innerWidth / 2, my = innerHeight / 2;   // true pointer
-    var sx = mx, sy = my;                            // shown (lagged) point
-    var seen = false, lastTick = 0;
-    addEventListener('mousemove', function (e) { mx = e.clientX; my = e.clientY; seen = true; }, { passive: true });
-
-    // ----- risky clicks: redirect the click to the lagged position -----
-    addEventListener('click', function (e) {
-      if (!LEVELS[lvl]) return;          // easy: native click
-      if (e.__lag) return;               // let our own synthetic click pass
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      var el = document.elementFromPoint(sx, sy);
-      if (!el) return;
-      var t = (el.closest && el.closest('label')) || el;
-      var ev = new MouseEvent('click', { bubbles: true, cancelable: true, view: window, clientX: sx, clientY: sy });
-      ev.__lag = true;
-      t.dispatchEvent(ev);
-    }, true);
-
-    function apply() {
-      lvl = readLevel();
-      body.classList.toggle('cursor-lagging', !!LEVELS[lvl]);
-      sx = mx; sy = my; lastTick = 0;
-    }
-    ['diff-easy', 'diff-med', 'diff-hard'].forEach(function (id) { get(id).addEventListener('change', apply); });
-
-    function frame(now) {
-      var cfg = LEVELS[lvl];
-      if (!cfg || !seen) {
-        dot.style.opacity = '0';
-      } else {
-        dot.style.opacity = '1';
-        if (now - lastTick >= cfg.interval) {             // discrete jump
-          lastTick = now;
-          if (Math.abs(mx - sx) < 0.5 && Math.abs(my - sy) < 0.5) { sx = mx; sy = my; }
-          else { sx += (mx - sx) * cfg.step; sy += (my - sy) * cfg.step; }
-        }
-        dot.style.transform = 'translate(' + sx + 'px,' + sy + 'px)';
-      }
-      requestAnimationFrame(frame);
-    }
-    apply();
-    requestAnimationFrame(frame);
-  })();
-  </script>
 </body>
 </html>
